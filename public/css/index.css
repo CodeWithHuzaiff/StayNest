@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ---------- Page Scope ---------- */
+.listings-page {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+  padding: 2rem;
+  color: #111827;
+}
+
+/* ---------- Header ---------- */
+.listings-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.listings-page .page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.listings-page .new-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.listings-page .new-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* ---------- Grid ---------- */
+.listings-page .listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
+}
+
+/* ---------- Card ---------- */
+.listings-page .listing-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listings-page .listing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+.listings-page .listing-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+/* ---------- Content ---------- */
+.listings-page .card-content {
+  padding: 1.3rem;
+}
+
+.listings-page .card-content h2 {
+  margin-bottom: 0.4rem;
+}
+
+.listings-page .card-content h2 a {
+  text-decoration: none;
+  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.listings-page .card-content h2 a:hover {
+  color: #3b82f6;
+}
+
+.listings-page .card-content p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.listings-page .meta {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.6rem;
+}
+
+.listings-page .price {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #16a34a;
+  margin-top: 0.7rem;
+}
+
+/* ---------- Actions ---------- */
+.listings-page .actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.listings-page .actions form {
+  flex: 1;
+}
+
+.listings-page .edit-btn,
+.listings-page .delete-btn {
+  width: 100%;
+  padding: 0.45rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.listings-page .edit-btn {
+  background: #22c55e;
+  color: white;
+}
+
+.listings-page .edit-btn:hover {
+  background: #16a34a;
+}
+
+.listings-page .delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.listings-page .delete-btn:hover {
+  background: #dc2626;
+}

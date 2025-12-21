@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="new-page">
+  <div class="form-card">
+    <h1>Create New Listing</h1>
+
+    <form method="post" action="/listings">
+      <input type="text" name="title" placeholder="Listing title" required />
+
+      <textarea
+        name="description"
+        placeholder="Describe your place..."
+        required
+      ></textarea>
+
+      <input
+        type="text"
+        name="image"
+        placeholder="Enter Image URL"
+        required
+      />
+
+      <input
+        type="number"
+        name="price"
+        placeholder="Price per night (₹)"
+        required
+      />
+
+      <input type="text" name="location" placeholder="City / Area" required />
+
+      <input type="text" name="country" placeholder="Country" required />
+
+      <button>Create Listing</button>
+    </form>
+  </div>
+</div>

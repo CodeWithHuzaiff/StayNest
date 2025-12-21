@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ================= Page Wrapper ================= */
+.edit-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+  font-family: "Inter", sans-serif;
+  color: #111827;
+}
+
+/* ================= Card ================= */
+.edit-page .edit-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  padding: 2.2rem;
+  border-radius: 22px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+
+.edit-page .edit-card h1 {
+  text-align: center;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 1.8rem;
+}
+
+.edit-page .edit-card input,
+.edit-page .edit-card textarea {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111827;
+  outline: none;
+  background: #f9fafb;
+  margin-bottom: 1rem;
+  transition: border 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+
+.edit-page .edit-card input {
+  height: 52px;
+  padding: 0 0.95rem;
+  line-height: 1.2;
+  display: block;
+}
+
+
+.edit-page .edit-card textarea {
+  min-height: 120px;
+  padding: 14px 0.95rem;
+  line-height: 1.5;
+  resize: none;
+}
+
+
+.edit-page .edit-card input:focus,
+.edit-page .edit-card textarea:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+
+.edit-page .edit-card input::placeholder,
+.edit-page .edit-card textarea::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.edit-page .actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+
+.edit-page .actions button {
+  flex: 1;
+  height: 48px;
+  border-radius: 14px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+
+.edit-page .save-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+}
+
+.edit-page .save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35);
+}
+
+
+.edit-page .back-btn {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.edit-page .back-btn:hover {
+  background: #d1d5db;
+}
+.edit-page .edit-card input {
+  display: flex;
+  align-items: center;
+}
+
+.edit-page .edit-card textarea {
+  display: block;
+  padding-top: 16px; 
+}
+
+
+.edit-page .edit-card textarea {
+  line-height: 1.6;
+}
+
+
+.edit-page .edit-card input[value],
+.edit-page .edit-card textarea {
+  box-sizing: border-box;
+}

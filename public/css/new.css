@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ================= Page Scope ================= */
+.new-page {
+  background: radial-gradient(
+      circle at top left,
+      rgba(59, 130, 246, 0.08),
+      transparent 40%
+    ),
+    linear-gradient(135deg, #f5f7fa, #e4ecf5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #111827;
+  font-family: "Inter", sans-serif;
+}
+
+/* ================= Card ================= */
+.new-page .form-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  padding: 2.4rem;
+  border-radius: 22px;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  animation: fadeUp 0.6s ease;
+}
+
+/* ================= Heading ================= */
+.new-page .form-card h1 {
+  text-align: center;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.02em;
+}
+
+/* ================= Inputs ================= */
+.new-page .form-card input,
+.new-page .form-card textarea {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  margin-bottom: 1.1rem;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111827;
+  background: #f9fafb;
+  outline: none;
+  transition:
+    border 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    transform 0.15s ease;
+}
+
+.new-page .form-card textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* Hover (subtle lift) */
+.new-page .form-card input:hover,
+.new-page .form-card textarea:hover {
+  background: #ffffff;
+}
+
+/* Focus */
+.new-page .form-card input:focus,
+.new-page .form-card textarea:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.18),
+    0 4px 12px rgba(59, 130, 246, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Placeholder styling */
+.new-page .form-card ::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* ================= Button ================= */
+.new-page .form-card button {
+  width: 100%;
+  padding: 0.85rem;
+  margin-top: 0.8rem;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Button hover */
+.new-page .form-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+/* Button active */
+.new-page .form-card button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* ================= Animation ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.new-page .form-card input {
+  height: 52px;                
+  line-height: 1.2;
+  display: block;
+}
+
+.new-page .form-card textarea {
+  line-height: 1.4;
+  padding-top: 14px;          
+}
+
+.new-page .form-card input::placeholder,
+.new-page .form-card textarea::placeholder {
+  line-height: 1.4;
+}
+
+.new-page .form-card input,
+.new-page .form-card textarea {
+  box-sizing: border-box;
+}
