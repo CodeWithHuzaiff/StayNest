@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate') %>
+
 <div class="listings-page">
+  <div class="listings-container">
     <div class="header">
       <h1 class="page-title">Available Listings</h1>
 
@@ -10,37 +12,49 @@
 
     <div class="listings">
       <% for(let i = 0; i < listings.length; i++) { %>
-        <div class="listing-card">
-          <img src="<%= listings[i].image.url %>" alt="Listing image" />
+      <div class="listing-card">
+        <img src="<%= listings[i].image.url %>" alt="Listing image" />
 
-          <div class="card-content">
-            <h2>
-              <a href="/listings/<%= listings[i]._id %>">
-                <%= listings[i].title %>
-              </a>
-            </h2>
+        <div class="card-content">
+          <h2>
+            <a href="/listings/<%= listings[i]._id %>">
+              <%= listings[i].title %>
+            </a>
+          </h2>
 
-            <p><%= listings[i].description %></p>
+          <p><%= listings[i].description %></p>
 
-            <div class="meta">
-              📍 <%= listings[i].location %>, <%= listings[i].country %>
-            </div>
+          <div class="meta">
+            📍 <%= listings[i].location %>, <%= listings[i].country %>
+          </div>
 
-            <div class="price">
-              ₹ <%= listings[i].price.toLocaleString("en-IN") %> / night
-            </div>
+          <div class="price">
+            ₹ <%= listings[i].price.toLocaleString("en-IN") %> / night
+          </div>
 
-            <div class="actions">
+          <div class="actions">
+            <!-- View button (full width) -->
+            <a href="/listings/<%= listings[i]._id %>" class="view-btn">
+              View Listing
+            </a>
+          
+            <!-- Edit + Delete row -->
+            <div class="action-row">
               <form method="get" action="/listings/<%= listings[i]._id %>/edit">
                 <button class="edit-btn">Edit</button>
               </form>
-
-              <form method="post" action="/listings/<%= listings[i]._id %>?_method=DELETE">
+          
+              <form
+                method="post"
+                action="/listings/<%= listings[i]._id %>?_method=DELETE"
+              >
                 <button class="delete-btn">Delete</button>
               </form>
             </div>
           </div>
         </div>
+      </div>
       <% } %>
     </div>
   </div>
+</div>

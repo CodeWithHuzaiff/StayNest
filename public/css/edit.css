@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-/* ================= Page Wrapper ================= */
 .edit-page {
   min-height: 100vh;
   display: flex;
@@ -12,8 +11,8 @@
   color: #111827;
 }
 
-/* ================= Card ================= */
-.edit-page .edit-card {
+/*  CARD*/
+.edit-card {
   width: 100%;
   max-width: 480px;
   background: #ffffff;
@@ -22,8 +21,8 @@
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
 }
 
-
-.edit-page .edit-card h1 {
+/*TITLE */
+.edit-card h1 {
   text-align: center;
   font-size: 1.65rem;
   font-weight: 700;
@@ -31,59 +30,58 @@
   margin-bottom: 1.8rem;
 }
 
-.edit-page .edit-card input,
-.edit-page .edit-card textarea {
+/* FORM FIELDS*/
+.edit-card input,
+.edit-card textarea {
   width: 100%;
   border-radius: 14px;
   border: 1px solid #d1d5db;
   font-size: 0.95rem;
   font-weight: 500;
   color: #111827;
-  outline: none;
   background: #f9fafb;
+  outline: none;
   margin-bottom: 1rem;
+  box-sizing: border-box;
   transition: border 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-
-.edit-page .edit-card input {
+/* Single-line inputs */
+.edit-card input {
   height: 52px;
-  padding: 0 0.95rem;
-  line-height: 1.2;
-  display: block;
+  padding: 0 1rem;
 }
 
-
-.edit-page .edit-card textarea {
+/* Multi-line description */
+.edit-card textarea {
   min-height: 120px;
-  padding: 14px 0.95rem;
-  line-height: 1.5;
+  padding: 14px 1rem;
+  line-height: 1.6;
   resize: none;
 }
 
-
-.edit-page .edit-card input:focus,
-.edit-page .edit-card textarea:focus {
+/* Focus state */
+.edit-card input:focus,
+.edit-card textarea:focus {
   border-color: #3b82f6;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
-
-.edit-page .edit-card input::placeholder,
-.edit-page .edit-card textarea::placeholder {
+/* Placeholder */
+.edit-card input::placeholder,
+.edit-card textarea::placeholder {
   color: #9ca3af;
-  font-weight: 500;
 }
 
-.edit-page .actions {
+/*ACTIONS*/
+/* .actions {
   display: flex;
   gap: 0.8rem;
   margin-top: 1.4rem;
 }
 
-
-.edit-page .actions button {
+.actions button {
   flex: 1;
   height: 48px;
   border-radius: 14px;
@@ -92,45 +90,47 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+} */
+
+.edit-page .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+.edit-page .actions form {
+  width: 100%;
+}
+
+.edit-page .actions button {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
 }
 
 
-.edit-page .save-btn {
+/* Save */
+.save-btn {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: white;
 }
 
-.edit-page .save-btn:hover {
+.save-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35);
 }
 
-
-.edit-page .back-btn {
+/* Back */
+.back-btn {
   background: #e5e7eb;
   color: #111827;
 }
 
-.edit-page .back-btn:hover {
+.back-btn:hover {
   background: #d1d5db;
-}
-.edit-page .edit-card input {
-  display: flex;
-  align-items: center;
-}
-
-.edit-page .edit-card textarea {
-  display: block;
-  padding-top: 16px; 
-}
-
-
-.edit-page .edit-card textarea {
-  line-height: 1.6;
-}
-
-
-.edit-page .edit-card input[value],
-.edit-page .edit-card textarea {
-  box-sizing: border-box;
 }

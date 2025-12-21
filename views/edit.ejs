@@ -6,57 +6,57 @@
 
     <form method="post" action="/listings/<%= target._id %>?_method=PUT">
       <input
-  type="text"
-  name="title"
-  value="<%= target.title %>"
-  placeholder="Listing title"
-  required
-/>
+        type="text"
+        name="title"
+        value="<%= target.title %>"
+        placeholder="Listing title"
+        required
+      />
 
-<textarea
-  name="description"
-  placeholder="Description"
-  required
-><%= target.description %></textarea>
+      <textarea name="description" placeholder="Description" required>
+<%= target.description %></textarea
+      >
 
-<input
-  type="text"
-  name="imageUrl"
-  value="<%= target.image.url %>"
-  placeholder="Enter Image URL"
-  required
-/>
+      <input
+        type="text"
+        name="imageUrl"
+        value="<%= target.image.url %>"
+        placeholder="Enter Image URL"
+        required
+      />
 
-<input
-  type="number"
-  name="price"
-  value="<%= target.price %>"
-  placeholder="Price per night (₹)"
-  required
-/>
+      <input
+        type="number"
+        name="price"
+        value="<%= target.price %>"
+        placeholder="Price per night (₹)"
+        required
+      />
 
-<input
-  type="text"
-  name="location"
-  value="<%= target.location %>"
-  placeholder="Location"
-  required
-/>
+      <input
+        type="text"
+        name="location"
+        value="<%= target.location %>"
+        placeholder="Location"
+        required
+      />
 
-<input
-  type="text"
-  name="country"
-  value="<%= target.country %>"
-  placeholder="Country"
-  required
-/>
-      <div class="actions">
+      <input
+        type="text"
+        name="country"
+        value="<%= target.country %>"
+        placeholder="Country"
+        required
+      />
+    </form>
+    <div class="actions">
+      <form method="post" action="/listings/<%= target._id %>?_method=PUT">
         <button class="save-btn">Save Changes</button>
-      </div>
-    </form>
-
-    <form method="get" action="/listings" class="actions">
-      <button class="back-btn">Back to Listings</button>
-    </form>
+      </form>
+    
+      <form method="get" action="/listings">
+        <button class="back-btn">Back to Listings</button>
+      </form>
+    </div>
   </div>
 </div>

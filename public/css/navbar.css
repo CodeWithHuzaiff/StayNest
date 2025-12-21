@@ -1,0 +1,98 @@
+*{
+    font-family: "DM Sans", sans-serif;
+letter-spacing: -0.03em;
+}
+.sn-navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1000;
+  }
+  
+  .sn-nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Logo */
+  .sn-logo {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.55rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #ef4444;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sn-logo span {
+    color: #111827;
+    font-weight: 600;
+  }
+  
+  /* Center search */
+  .sn-nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .sn-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    font-weight: 600;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  
+  .sn-dot {
+    width: 4px;
+    height: 4px;
+    background: #9ca3af;
+    border-radius: 50%;
+  }
+  
+  /* Right */
+  .sn-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .sn-host {
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .sn-host:hover {
+    background: #f3f4f6;
+  }
+  
+  .sn-profile {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }

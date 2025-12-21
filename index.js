@@ -27,20 +27,6 @@ app.get("/", (req, res) => {
   res.send("Connected");
 });
 
-// TEST
-// app.get("/testListing", async (req, res) => {
-//   const sampleListing = new Listing({
-//     title: "My new villa",
-//     description: "By the river stream!",
-//     price: 1900,
-//     location: "Kerala",
-//     country: "India",
-//   });
-
-//   await sampleListing.save();
-//   res.send("Test listing saved");
-// });
-
 // INDEX
 app.get("/listings", async (req, res) => {
   const listings = await Listing.find();
@@ -111,6 +97,11 @@ app.delete("/listings/:id", async (req, res) =>{
     const { id } = req.params;
     let delList=await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
+})
+
+//contacts
+app.get("/contacts", (req, res) =>{
+    res.render("contacts.ejs");
 })
 
 
