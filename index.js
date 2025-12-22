@@ -9,8 +9,8 @@ const Profile = require("./models/profile.js");
 const app = express();
 
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "/public")))
-app.engine("ejs",ejsMate);
+app.use(express.static(path.join(__dirname, "/public")));
+app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -42,8 +42,15 @@ app.get("/listings/new", (req, res) => {
 
 // CREATE
 app.post("/listings", async (req, res) => {
-  const { title, description,image, price, location, country } = req.body;
-  const data = new Listing({ title, description,image,price, location, country });
+  const { title, description, image, price, location, country } = req.body;
+  const data = new Listing({
+    title,
+    description,
+    image,
+    price,
+    location,
+    country,
+  });
   await data.save();
   res.redirect("/listings");
 });
@@ -66,27 +73,27 @@ app.get("/listings/:id/edit", async (req, res) => {
 app.put("/listings/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description,imageUrl, price, location, country } = req.body;
+    const { title, description, imageUrl, price, location, country } = req.body;
 
     const updateData = {
-        title,
-        description,
-        price,
-        location,
-        country,
-      };
+      title,
+      description,
+      price,
+      location,
+      country,
+    };
 
     if (imageUrl && imageUrl.trim() !== "") {
-        updateData.image = {
-          filename: "listingimage",
-          url: imageUrl,
-        };
-      }
-      await Listing.findByIdAndUpdate(
-        id,
-        { $set: updateData },
-        { runValidators: true, new: true }
-      );
+      updateData.image = {
+        filename: "listingimage",
+        url: imageUrl,
+      };
+    }
+    await Listing.findByIdAndUpdate(
+      id,
+      { $set: updateData },
+      { runValidators: true, new: true }
+    );
 
     res.redirect(`/listings/${id}`);
   } catch (err) {
@@ -95,42 +102,38 @@ app.put("/listings/:id", async (req, res) => {
   }
 });
 
-
 // DELETE
-app.delete("/listings/:id", async (req, res) =>{
-    const { id } = req.params;
-    let delList=await Listing.findByIdAndDelete(id);
-    res.redirect("/listings");
-})
+app.delete("/listings/:id", async (req, res) => {
+  const { id } = req.params;
+  let delList = await Listing.findByIdAndDelete(id);
+  res.redirect("/listings");
+});
 
 //contacts route
-app.get("/contacts", (req, res) =>{
-    res.render("contacts.ejs");
-})
-
-
+app.get("/contacts", (req, res) => {
+  res.render("contacts.ejs");
+});
 
 //profile route
-app.get("/profile",async (req, res) =>{
+app.get("/profile", async (req, res) => {
   const user = await Profile.findOne();
-  if(!user){
-    return res.send("User not found!")
+  if (!user) {
+    return res.send("User not found!");
   }
-    res.render("profile.ejs",{user});
-})
+  res.render("profile.ejs", { user });
+});
 
 //Edit profile route
-app.get("/profile/edit/:id",async (req,res)=>{
+app.get("/profile/edit/:id", async (req, res) => {
   const { id } = req.params;
-  user=await Profile.findById(id);
-  res.render("profileEdit.ejs",{user});
-  
-})
+  user = await Profile.findById(id);
+  res.render("profileEdit.ejs", { user });
+});
 
-app.put("/profile",async (req,res)=>{
-  const user=await Profile.findOne();
+app.put("/profile", async (req, res) => {
+  const user = await Profile.findOne();
 
-  const{name,email,phone,location,password}=req.body;
+  const { name, email, phone, location, password } = req.body;
   const updateUser = {
     name,
     email,
@@ -139,18 +142,16 @@ app.put("/profile",async (req,res)=>{
     password,
   };
 
-  if(user.password!=password){
-    res.send("Incorrect Password!!")
+  if (user.password != password) {
+    res.send("Incorrect Password!!");
   }
-    user.name=name;
-    user.phone=phone;
-    user.location=location;
+  user.name = name;
+  user.phone = phone;
+  user.location = location;
 
-    await user.save();
-    res.redirect("/profile");
-})
-
-
+  await user.save();
+  res.redirect("/profile");
+});
 
 app.listen(8080, () => {
   console.log("Server running on port 8080");
