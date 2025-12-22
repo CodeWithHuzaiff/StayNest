@@ -4,7 +4,9 @@
   <div class="edit-card">
     <h1>Edit Listing</h1>
 
+    <!-- ONLY ONE FORM -->
     <form method="post" action="/listings/<%= target._id %>?_method=PUT">
+
       <input
         type="text"
         name="title"
@@ -13,9 +15,7 @@
         required
       />
 
-      <textarea name="description" placeholder="Description" required>
-<%= target.description %></textarea
-      >
+      <textarea name="description" placeholder="Description" required><%= target.description %></textarea>
 
       <input
         type="text"
@@ -48,15 +48,20 @@
         placeholder="Country"
         required
       />
+
+      <!-- SAVE BUTTON MUST BE INSIDE FORM -->
+      <div class="actions">
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+
     </form>
-    <div class="actions">
-      <form method="post" action="/listings/<%= target._id %>?_method=PUT">
-        <button class="save-btn">Save Changes</button>
-      </form>
-    
-      <form method="get" action="/listings">
-        <button class="back-btn">Back to Listings</button>
-      </form>
-    </div>
+
+    <!-- SEPARATE FORM FOR BACK -->
+    <form method="get" action="/listings">
+      <div class="actions">
+        <button  type="submit" class="back-btn">Back to Listings</button>
+      </div>
+    </form>
+
   </div>
 </div>

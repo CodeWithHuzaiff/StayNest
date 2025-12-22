@@ -82,9 +82,11 @@ app.put("/listings/:id", async (req, res) => {
           url: imageUrl,
         };
       }
-    await Listing.findByIdAndUpdate(
-      id,{updateData},{ runValidators: true }
-    );
+      await Listing.findByIdAndUpdate(
+        id,
+        { $set: updateData },
+        { runValidators: true, new: true }
+      );
 
     res.redirect(`/listings/${id}`);
   } catch (err) {
