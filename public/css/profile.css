@@ -1,0 +1,90 @@
+.profile-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+  }
+  
+  .profile-card {
+    background: #ffffff;
+    max-width: 420px;
+    width: 100%;
+    padding: 2.4rem;
+    border-radius: 22px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    text-align: center;
+  }
+  
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+  
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+  }
+  
+  .profile-role {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1.6rem;
+  }
+  
+  .profile-info {
+    text-align: left;
+    margin-bottom: 1.8rem;
+  }
+  
+  .info-row {
+    margin-bottom: 0.9rem;
+  }
+  
+  .info-row span {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 600;
+    display: block;
+  }
+  
+  .info-row p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .profile-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    flex: 1;
+    padding: 0.7rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .btn-primary {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background: #e5e7eb;
+    color: #111827;
+  }

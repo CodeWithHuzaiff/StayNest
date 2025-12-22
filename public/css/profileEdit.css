@@ -1,0 +1,70 @@
+.sn-profile-edit-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+  }
+  
+  .sn-profile-edit-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.2rem;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+  }
+  
+  .sn-profile-edit-card h1 {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+  
+  /* Form */
+  .sn-profile-edit-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sn-profile-edit-form label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 0.3rem;
+  }
+  
+  .sn-profile-edit-form input {
+    height: 48px;
+    padding: 0 0.8rem;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 1.1rem;
+    background: #f9fafb;
+    font-size: 0.9rem;
+  }
+  
+  .sn-profile-edit-form input:focus {
+    border-color: #3b82f6;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+  }
+  
+  /* Button */
+  .sn-profile-edit-btn {
+    margin-top: 1rem;
+    height: 48px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .sn-profile-edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(22,163,74,0.35);
+  }

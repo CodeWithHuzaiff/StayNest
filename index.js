@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const Listing = require("./models/listing.js");
+const Profile = require("./models/profile.js");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.static(path.join(__dirname, "/public")))
 app.engine("ejs",ejsMate);
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
 const mongo_url = "mongodb://127.0.0.1:27017/StayNest";
@@ -63,7 +65,7 @@ app.get("/listings/:id/edit", async (req, res) => {
 // UPDATE
 app.put("/listings/:id", async (req, res) => {
   try {
-    let { id } = req.params;
+    const { id } = req.params;
     const { title, description,imageUrl, price, location, country } = req.body;
 
     const updateData = {
@@ -81,7 +83,7 @@ app.put("/listings/:id", async (req, res) => {
         };
       }
     await Listing.findByIdAndUpdate(
-      id,updateData,{ runValidators: true }
+      id,{updateData},{ runValidators: true }
     );
 
     res.redirect(`/listings/${id}`);
@@ -99,11 +101,52 @@ app.delete("/listings/:id", async (req, res) =>{
     res.redirect("/listings");
 })
 
-//contacts
+//contacts route
 app.get("/contacts", (req, res) =>{
     res.render("contacts.ejs");
 })
 
+
+
+//profile route
+app.get("/profile",async (req, res) =>{
+  const user = await Profile.findOne();
+  if(!user){
+    return res.send("User not found!")
+  }
+    res.render("profile.ejs",{user});
+})
+
+//Edit profile route
+app.get("/profile/edit/:id",async (req,res)=>{
+  const { id } = req.params;
+  user=await Profile.findById(id);
+  res.render("profileEdit.ejs",{user});
+  
+})
+
+app.put("/profile",async (req,res)=>{
+  const user=await Profile.findOne();
+
+  const{name,email,phone,location,password}=req.body;
+  const updateUser = {
+    name,
+    email,
+    phone,
+    location,
+    password,
+  };
+
+  if(user.password!=password){
+    res.send("Incorrect Password!!")
+  }
+    user.name=name;
+    user.phone=phone;
+    user.location=location;
+
+    await user.save();
+    res.redirect("/profile");
+})
 
 
 

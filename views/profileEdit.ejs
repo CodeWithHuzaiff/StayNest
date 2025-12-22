@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="sn-profile-edit-page">
+  <div class="sn-profile-edit-card">
+    <h1>Edit Profile</h1>
+
+    <form method="post" action="/profile?_method=PUT" class="sn-profile-edit-form">
+      
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        value="<%= user.name %>"
+        required
+      />
+
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        value="<%= user.email %>"
+        disabled
+      />
+
+      <label>Phone</label>
+      <input
+        type="text"
+        name="phone"
+        value="<%= user.phone %>"
+        required
+      />
+
+      <label>Location</label>
+      <input
+        type="text"
+        name="location"
+        value="<%= user.location %>"
+        required
+      />
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        required
+      />
+
+      <button class="sn-profile-edit-btn">Save Changes</button>
+    </form>
+  </div>
+</div>
