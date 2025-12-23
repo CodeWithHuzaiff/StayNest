@@ -129,7 +129,6 @@ app.get("/profile/edit/:id", async (req, res) => {
   user = await Profile.findById(id);
   res.render("profileEdit.ejs", { user });
 });
-
 app.put("/profile", async (req, res) => {
   const user = await Profile.findOne();
 
