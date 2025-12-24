@@ -47,6 +47,9 @@ app.get("/listings/new", (req, res) => {
 
 // CREATE
 app.post("/listings",wrapAsync(async (req, res,next) => {
+  if(!req.body){
+    throw new ExpressError("400","Send Valid Data!")
+  }
     const { title, description, image, price, location, country } = req.body;
     const data = new Listing({
       title,
@@ -74,19 +77,16 @@ app.get("/listings/:id",wrapAsync(async (req, res,next) => {
 
 // EDIT
 app.get("/listings/:id/edit",wrapAsync(async (req, res,next) => {
-  try{
     const { id } = req.params;
     const target = await Listing.findById(id);
     res.render("edit.ejs", { target });
-  }catch(err){
-    next(err)
-  }
-
 }));
 
 // UPDATE
 app.put("/listings/:id",wrapAsync(async (req, res, next) => {
-  try {
+  if(!req.body){
+    throw new ExpressError("400","Send Valid Data!")
+  }
     const { id } = req.params;
     const { title, description, imageUrl, price, location, country } = req.body;
 
@@ -111,20 +111,13 @@ app.put("/listings/:id",wrapAsync(async (req, res, next) => {
     );
 
     res.redirect(`/listings/${id}`);
-  } catch (err) {
-    next(err);
-  }
 }));
 
 // DELETE
 app.delete("/listings/:id",wrapAsync(async (req, res, next) => {
-  try{
     const { id } = req.params;
     let delList = await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
-  }catch(err){
-    next(err);
-  }
 
 }));
 
@@ -140,15 +133,11 @@ app.get("/contacts",wrapAsync(async (req, res) => {
 
 //profile route
 app.get("/profile", wrapAsync(async (req, res, next) => {
-  try{
     const user = await Profile.findOne();
     if (!user) {
       return next(new ExpressError(404,"User not found"));
     }
     res.render("profile.ejs", { user });
-  }catch(err){
-    next(err);
-  }
 
 }));
 
@@ -160,8 +149,10 @@ app.get("/profile/edit/:id",wrapAsync( async (req, res) => {
 }));
 
 app.put("/profile",wrapAsync(async (req, res) => {
+  if(!req.body){
+    throw new ExpressError("400","Send Valid Data!")
+  }
   const user = await Profile.findOne();
-
   const { name, email, phone, location, password } = req.body;
   const updateUser = {
     name,
