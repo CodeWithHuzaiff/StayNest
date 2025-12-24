@@ -5,17 +5,37 @@
     <h1>Edit Listing</h1>
 
     <!-- ONLY ONE FORM -->
-    <form method="post" action="/listings/<%= target._id %>?_method=PUT">
+    <form
+      method="post"
+      action="/listings/<%= target._id %>?_method=PUT"
+      class="needs-validation"
+      novalidate
+    >
+      <!-- Title -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="title"
+          value="<%= target.title %>"
+          placeholder="Listing title"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Title is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <input
-        type="text"
-        name="title"
-        value="<%= target.title %>"
-        placeholder="Listing title"
-        required
-      />
-
-      <textarea name="description" placeholder="Description" required><%= target.description %></textarea>
+      <!-- Description -->
+      <div class="mb-3">
+        <textarea
+          name="description"
+          placeholder="Describe your place..."
+          class="form-control"
+          required
+        ><%= target.description %></textarea>
+        <div class="invalid-feedback">Description is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
       <input
         type="text"
@@ -25,43 +45,59 @@
         required
       />
 
-      <input
-        type="number"
-        name="price"
-        value="<%= target.price %>"
-        placeholder="Price per night (₹)"
-        required
-      />
+      <!-- Price -->
+      <div class="mb-3">
+        <input
+          type="number"
+          name="price"
+          placeholder="Price per night (₹)"
+          value="<%= target.price %>"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Price is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <input
-        type="text"
-        name="location"
-        value="<%= target.location %>"
-        placeholder="Location"
-        required
-      />
+      <!-- Location -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="location"
+          placeholder="City / Area"
+          value="<%= target.location %>"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Location is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <input
-        type="text"
-        name="country"
-        value="<%= target.country %>"
-        placeholder="Country"
-        required
-      />
+      <!-- Country -->
+      <div class="mb-4">
+        <input
+          type="text"
+          name="country"
+          placeholder="Country"
+          class="form-control"
+          value="<%= target.country %>"
+          required
+        />
+        <div class="invalid-feedback">Country is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
       <!-- SAVE BUTTON MUST BE INSIDE FORM -->
       <div class="actions">
         <button type="submit" class="save-btn">Save Changes</button>
       </div>
-
     </form>
 
     <!-- SEPARATE FORM FOR BACK -->
     <form method="get" action="/listings">
       <div class="actions">
-        <button  type="submit" class="back-btn">Back to Listings</button>
+        <button type="submit" class="back-btn">Back to Listings</button>
       </div>
     </form>
-
   </div>
 </div>

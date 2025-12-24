@@ -4,34 +4,85 @@
   <div class="form-card">
     <h1>Create New Listing</h1>
 
-    <form method="post" action="/listings">
-      <input type="text" name="title" placeholder="Listing title" required />
+    <form method="post" action="/listings" class="needs-validation" novalidate>
 
-      <textarea
-        name="description"
-        placeholder="Describe your place..."
-        required
-      ></textarea>
+      <!-- Title -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="title"
+          placeholder="Listing title"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Title is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <input
-        type="text"
-        name="image"
-        placeholder="Enter Image URL"
-        required
-      />
+      <!-- Description -->
+      <div class="mb-3">
+        <textarea
+          name="description"
+          placeholder="Describe your place..."
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Description is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <input
-        type="number"
-        name="price"
-        placeholder="Price per night (₹)"
-        required
-      />
+      <!-- Image -->
+      <div>
+        <input
+          type="text"
+          name="image"
+          placeholder="Enter Image URL"
+          required
+        />
+      </div>
 
-      <input type="text" name="location" placeholder="City / Area" required />
+      <!-- Price -->
+      <div class="mb-3">
+        <input
+          type="number"
+          name="price"
+          placeholder="Price per night (₹)"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Price is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <input type="text" name="country" placeholder="Country" required />
+      <!-- Location -->
+      <div class="mb-3">
+        <input
+          type="text"
+          name="location"
+          placeholder="City / Area"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Location is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
-      <button>Create Listing</button>
+      <!-- Country -->
+      <div class="mb-4">
+        <input
+          type="text"
+          name="country"
+          placeholder="Country"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Country is required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">
+        Create Listing
+      </button>
     </form>
   </div>
 </div>

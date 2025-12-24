@@ -4,21 +4,21 @@
       <div class="contact-card">
         <h1>Contact</h1>
   
-        <p class="name">Mohammad Huzaif</p>
+        <p class="name"><%= user.name %></p>
         <p class="role">Full-Stack Web Developer</p>
   
         <div class="contact-info">
           <p>
             <span>📧 Email</span>
-            <a href="mailto:mohammadhuzaiff@gmail.com">
-              mohammadhuzaiff@gmail.com
+            <a href="mailto:<%= user.email %>">
+              <%= user.email %>
             </a>
           </p>
   
           <p>
             <span>📞 Phone</span>
-            <a href="tel:+917006935455">
-              +91 70069 35455
+            <a href="tel:<%= user.phone %>">
+              <%= user.phone %>
             </a>
           </p>
         </div>
