@@ -7,6 +7,8 @@ const Listing = require("./models/listing.js");
 const Profile = require("./models/profile.js");
 const ExpressError = require("./utils/ExpressError.js");
 const wrapAsync = require("./utils/wrapAsync.js");
+const listingSchema = require("./schema.js");
+const { error } = require("console");
 
 const app = express();
 
@@ -27,6 +29,17 @@ async function main() {
 }
 main().catch(console.error);
 
+//For schema Validation...
+const listingValidation=(req,res,next)=>{
+  let {error}=listingSchema.validate(req.body);
+  if(error){
+    let allErr=error.details.map((el)=>el.message).join(",") //For Additional Details..
+    throw new ExpressError(400,allErr);
+  }else{
+    next();
+  }
+}
+
 
 // HOME
 app.get("/", (req, res) => {
@@ -46,10 +59,7 @@ app.get("/listings/new", (req, res) => {
 });
 
 // CREATE
-app.post("/listings",wrapAsync(async (req, res,next) => {
-  if(!req.body){
-    throw new ExpressError("400","Send Valid Data!")
-  }
+app.post("/listings",listingValidation,wrapAsync(async (req, res,next) => {
     const { title, description, image, price, location, country } = req.body;
     const data = new Listing({
       title,
@@ -83,10 +93,7 @@ app.get("/listings/:id/edit",wrapAsync(async (req, res,next) => {
 }));
 
 // UPDATE
-app.put("/listings/:id",wrapAsync(async (req, res, next) => {
-  if(!req.body){
-    throw new ExpressError("400","Send Valid Data!")
-  }
+app.put("/listings/:id",listingValidation,wrapAsync(async (req, res, next) => {
     const { id } = req.params;
     const { title, description, imageUrl, price, location, country } = req.body;
 
@@ -149,9 +156,6 @@ app.get("/profile/edit/:id",wrapAsync( async (req, res) => {
 }));
 
 app.put("/profile",wrapAsync(async (req, res) => {
-  if(!req.body){
-    throw new ExpressError("400","Send Valid Data!")
-  }
   const user = await Profile.findOne();
   const { name, email, phone, location, password } = req.body;
   const updateUser = {
