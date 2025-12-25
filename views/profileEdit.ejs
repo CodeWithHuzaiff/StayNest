@@ -7,7 +7,8 @@
     <form
       method="post"
       action="/profile?_method=PUT"
-      class="sn-profile-edit-form"
+      class="sn-profile-edit-form needs-validation"
+      novalidate
     >
       <label>Name</label>
       <input type="text" name="name" value="<%= user.name %>" required />
@@ -25,9 +26,12 @@
         value="<%= user.location %>"
         required
       />
-
-      <label>Password</label>
-      <input type="password" name="password" required />
+      <div>
+        <label>Password</label>
+        <input class="form-control" type="password" name="password" required />
+        <div class="invalid-feedback">Password is required to Reflect changes!!</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
       <button class="sn-profile-edit-btn">Save Changes</button>
     </form>

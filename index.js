@@ -59,12 +59,15 @@ app.get("/listings/new", (req, res) => {
 });
 
 // CREATE
-app.post("/listings",listingValidation,wrapAsync(async (req, res,next) => {
-    const { title, description, image, price, location, country } = req.body;
+app.post("/listings",listingValidation,wrapAsync(async (req, res) => {
+    const { title, description, imageUrl, price, location, country } = req.body.listing;
     const data = new Listing({
       title,
       description,
-      image,
+      image: {
+        filename: "listingimage",
+        url: imageUrl,
+      },
       price,
       location,
       country,
@@ -98,9 +101,7 @@ app.put(
   listingValidation,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const { title, description, imageUrl, price, location, country } =
-      req.body.listing;
-
+    const { title, description, imageUrl, price, location, country } =req.body.listing;
     const updateData = {
       title,
       description,
