@@ -15,7 +15,7 @@
       <div class="mb-3">
         <input
           type="text"
-          name="title"
+          name="listing[title]"
           value="<%= target.title %>"
           placeholder="Listing title"
           class="form-control"
@@ -28,7 +28,7 @@
       <!-- Description -->
       <div class="mb-3">
         <textarea
-          name="description"
+          name="listing[description]"
           placeholder="Describe your place..."
           class="form-control"
           required
@@ -39,7 +39,7 @@
 
       <input
         type="text"
-        name="imageUrl"
+        name="listing[imageUrl]"
         value="<%= target.image.url %>"
         placeholder="Enter Image URL"
         required
@@ -49,7 +49,7 @@
       <div class="mb-3">
         <input
           type="number"
-          name="price"
+          name="listing[price]"
           placeholder="Price per night (₹)"
           value="<%= target.price %>"
           class="form-control"
@@ -63,7 +63,7 @@
       <div class="mb-3">
         <input
           type="text"
-          name="location"
+          name="listing[location]"
           placeholder="City / Area"
           value="<%= target.location %>"
           class="form-control"
@@ -77,7 +77,7 @@
       <div class="mb-4">
         <input
           type="text"
-          name="country"
+          name="listing[country]"
           placeholder="Country"
           class="form-control"
           value="<%= target.country %>"

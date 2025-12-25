@@ -7,7 +7,7 @@ const Listing = require("./models/listing.js");
 const Profile = require("./models/profile.js");
 const ExpressError = require("./utils/ExpressError.js");
 const wrapAsync = require("./utils/wrapAsync.js");
-const listingSchema = require("./schema.js");
+const {listingSchema} = require("./schema.js");
 const { error } = require("console");
 
 const app = express();
@@ -93,9 +93,13 @@ app.get("/listings/:id/edit",wrapAsync(async (req, res,next) => {
 }));
 
 // UPDATE
-app.put("/listings/:id",listingValidation,wrapAsync(async (req, res, next) => {
+app.put(
+  "/listings/:id",
+  listingValidation,
+  wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const { title, description, imageUrl, price, location, country } = req.body;
+    const { title, description, imageUrl, price, location, country } =
+      req.body.listing;
 
     const updateData = {
       title,
@@ -111,14 +115,15 @@ app.put("/listings/:id",listingValidation,wrapAsync(async (req, res, next) => {
         url: imageUrl,
       };
     }
-    await Listing.findByIdAndUpdate(
-      id,
-      { $set: updateData },
-      { runValidators: true, new: true }
-    );
+
+    await Listing.findByIdAndUpdate(id, updateData, {
+      runValidators: true,
+      new: true,
+    });
 
     res.redirect(`/listings/${id}`);
-}));
+  })
+);
 
 // DELETE
 app.delete("/listings/:id",wrapAsync(async (req, res, next) => {
