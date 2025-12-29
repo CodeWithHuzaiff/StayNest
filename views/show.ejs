@@ -29,5 +29,58 @@
         </form>
       </div>
     </div>
+
+    <div class="review col-8 offset-1">
+      <h4>Leave a Review</h4>
+      <hr />
+      <form
+        method="post"
+        action="/listings/<%= attach._id %>/review"
+        novalidate
+        class="needs-validation"
+      >
+        <div class="mb-3 mt-3">
+          <label for="rating" class="form-label">Rating</label>
+          <input
+            name="review[rating]"
+            type="range"
+            min="1"
+            max="5"
+            class="form-range"
+            id="rating"
+          />
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="comment" class="form-label">comment</label>
+          <textarea
+            name="review[comment]"
+            class="form-control"
+            id="comment"
+            cols="40"
+            rows="5"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Comment is required!</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <button class="btn btn-outline-dark mb-3">Submit</button>
+      </form>
+      <hr />
+
+      <h4>All Ratings</h4>
+
+      <% for(review of attach.reviews){%>
+      <div class="card mb-3" style="width: 25rem">
+        <div class="card-body">
+          <h5 class="card-title"><b>StayNest user</b></h5>
+          <p class="card-text"><%= review.comment %></p>
+          <p class="card-text"><%= review.rating%> star rating</p>
+          <form class="" method="post" action="/listings/<%= attach._id %>/review/<%= review._id %>?_method=DELETE">
+            <button class="btn btn-sm btn-dark">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+    </div>
   </div>
 </div>

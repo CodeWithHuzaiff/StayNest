@@ -5,9 +5,10 @@ const path = require("path");
 const ejsMate = require("ejs-mate");
 const Listing = require("./models/listing.js");
 const Profile = require("./models/profile.js");
+const Review = require("./models/review.js");
 const ExpressError = require("./utils/ExpressError.js");
 const wrapAsync = require("./utils/wrapAsync.js");
-const {listingSchema} = require("./schema.js");
+const {listingSchema,reviewSchema} = require("./schema.js");
 const { error } = require("console");
 
 const app = express();
@@ -32,6 +33,15 @@ main().catch(console.error);
 //For schema Validation...
 const listingValidation=(req,res,next)=>{
   let {error}=listingSchema.validate(req.body);
+  if(error){
+    let allErr=error.details.map((el)=>el.message).join(",") //For Additional Details..
+    throw new ExpressError(400,allErr);
+  }else{
+    next();
+  }
+}
+const reviewValidation=(req,res,next)=>{
+  let {error}=reviewSchema.validate(req.body);
   if(error){
     let allErr=error.details.map((el)=>el.message).join(",") //For Additional Details..
     throw new ExpressError(400,allErr);
@@ -80,7 +90,7 @@ app.post("/listings",listingValidation,wrapAsync(async (req, res) => {
 // SHOW
 app.get("/listings/:id",wrapAsync(async (req, res,next) => {
     const { id } = req.params;
-    const attach = await Listing.findById(id);
+    const attach = await Listing.findById(id).populate("reviews");
     if (!attach) {
       return next(new ExpressError(404,"Listing not found"));
     }
@@ -136,7 +146,7 @@ app.delete("/listings/:id",wrapAsync(async (req, res, next) => {
 
 
 
-//---------Another DATABASE-------
+//---------Another Model-------
 
 //contacts route
 app.get("/contacts",wrapAsync(async (req, res) => {
@@ -182,6 +192,29 @@ app.put("/profile",wrapAsync(async (req, res) => {
   await user.save();
   res.redirect("/profile");
 }));
+
+//Review route
+//it has only post req, No get req because review is accessed with the listings not individually.
+app.post("/listings/:id/review",reviewValidation,wrapAsync(async(req,res)=>{
+  let listing=await Listing.findById(req.params.id)
+  let newReview=new Review(req.body.review);
+  listing.reviews.push(newReview);
+
+  await newReview.save();
+  await listing.save();
+  res.redirect(`/listings/${listing._id}`);
+
+}));
+
+//Delete Review
+app.delete("/listings/:id/review/:reviewId",wrapAsync(async(req,res)=>{
+  let {id,reviewId}=req.params;
+  await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
+  await Review.findByIdAndDelete(reviewId);
+  res.redirect(`/listings/${id}`);
+}))
+
+
 
 
 app.use((req, res, next) => {
