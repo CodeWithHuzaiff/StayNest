@@ -8,6 +8,7 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const listing=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
 const profile=require("./routes/profile.js");
+const session=require("express-session");
 
 const app = express();
 
@@ -19,7 +20,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
-
 const mongo_url = "mongodb://127.0.0.1:27017/StayNest";
 
 async function main() {
@@ -27,6 +27,15 @@ async function main() {
   console.log("Connected to DB");
 }
 main().catch(console.error);
+
+
+const sessionOptions={
+  secret:"mysecrectcode(demo)",
+  resave:false,
+  saveUninitialized:true,
+}
+
+app.use(session(sessionOptions));
 
 
 //Routings
