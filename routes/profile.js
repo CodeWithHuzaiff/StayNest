@@ -46,6 +46,7 @@ router.get("/contacts",wrapAsync(async (req, res) => {
     user.location = location;
   
     await user.save();
+    req.flash("success","Profile Updated") //flash msgr
     res.redirect("/profile");
   }));
 

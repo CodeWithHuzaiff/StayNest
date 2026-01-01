@@ -42,6 +42,7 @@ router.post("/",listingValidation,wrapAsync(async (req, res) => {
       country,
     });
     await data.save();
+    req.flash("success","Listing Created Successfully!!") //flash msg
     res.redirect("/listings");
 
 }));
@@ -50,8 +51,9 @@ router.post("/",listingValidation,wrapAsync(async (req, res) => {
 router.get("/:id",wrapAsync(async (req, res,next) => {
     const { id } = req.params;
     const attach = await Listing.findById(id).populate("reviews");
-    if (!attach) {
-      return next(new ExpressError(404,"Listing not found"));
+    if (!attach) { //attach is an individual listing
+      req.flash("error","Listing Not Found");
+      return res.redirect("/listings");
     }
     res.render("show.ejs", { attach });
 
@@ -61,6 +63,10 @@ router.get("/:id",wrapAsync(async (req, res,next) => {
 router.get("/:id/edit",wrapAsync(async (req, res,next) => {
     const { id } = req.params;
     const target = await Listing.findById(id);
+    if (!target) { //target is an individual listing
+      req.flash("error","Listing Not Found");
+      return res.redirect("/listings");
+    }
     res.render("edit.ejs", { target });
 }));
 
@@ -90,7 +96,7 @@ router.put(
       runValidators: true,
       new: true,
     });
-
+    req.flash("success","Listing Updated Successfully!!") //flash msg
     res.redirect(`/listings/${id}`);
   })
 );
@@ -99,6 +105,7 @@ router.put(
 router.delete("/:id",wrapAsync(async (req, res, next) => {
     const { id } = req.params;
     let delList = await Listing.findByIdAndDelete(id);
+    req.flash("success","Listing Deleted Successfully!") //flash msg
     res.redirect("/listings");
 
 }));
