@@ -63,3 +63,18 @@
 .u-list a[href*="linkedin"]:hover { color: #0a66c2; }
 .u-list a[href*="instagram"]:hover { color: #e1306c; }
 .u-list a[href*="youtube"]:hover { color: #ff0000; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}

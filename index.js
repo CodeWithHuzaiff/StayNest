@@ -4,11 +4,18 @@ const methodOverride = require("method-override");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
-const listing=require("./routes/listing.js");
-const reviews=require("./routes/review.js");
-const profile=require("./routes/profile.js");
+
 const session=require("express-session");
 const flash=require("connect-flash");
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
+const User=require("./models/user.js");
+
+//Routers
+const listingRouter=require("./routes/listing.js");
+const reviewsRouter=require("./routes/review.js");
+const profileRouter=require("./routes/profile.js");
+const userRouter=require("./routes/user.js");
 
 const app = express();
 
@@ -32,7 +39,7 @@ main().catch(console.error);
 const sessionOptions={
   secret:"mysecretcode(demo)",
   resave:false,
-  saveUninitialized:true,
+  saveUninitialized:true,//if true prevent empty sessions to save 
   cookie:{
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -43,6 +50,16 @@ const sessionOptions={
 app.use(session(sessionOptions));
 app.use(flash());
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+
 //middleware for flash!
 app.use((req,res,next)=>{
   res.locals.success=req.flash("success");
@@ -50,10 +67,22 @@ app.use((req,res,next)=>{
   next();
 })
 
+app.get("/demouser",async (req,res)=>{
+  let fakeUser=new User({
+    email:"huzaif@gmail.com",
+    username:"huzaif123",
+  })
+  let regUser= await User.register(fakeUser,"hellohuzaif");
+  res.send(regUser)
+  
+})
+
+
 //Routings
-app.use("/listings",listing);
-app.use("/listings/:id/review",reviews);
-app.use("/profile",profile);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/review",reviewsRouter);
+app.use("/profile",profileRouter);
+app.use("/",userRouter);
 
 
 
