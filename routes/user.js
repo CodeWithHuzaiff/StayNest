@@ -14,9 +14,14 @@ router.post(
     try {
       let { username, email, password } = req.body;
       const newUser = new User({ email, username });
-      await User.register(newUser, password);
-      req.flash("success", "User Registered Successfully!");
-      res.redirect("/listings");
+      const regUser=await User.register(newUser, password);
+      req.login(regUser,(err)=>{
+        if(err){
+            return next(err);
+        }
+        req.flash("success", "User Registered Successfully!");
+        res.redirect("/listings");
+      })
     } catch (err) {
       req.flash("error", err.message);
       res.redirect("/signup");
@@ -44,7 +49,7 @@ router.get("/logout",(req,res,next)=>{
         if(err){
             return next(err);
         }
-        req.flash("Success","You're Logged Out Now!");
+        req.flash("success","You're Logged Out Now!");
         res.redirect("/listings")
     })
 })

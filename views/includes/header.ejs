@@ -17,10 +17,15 @@
       </div>
 
       <div class="sn-nav-right">
-        <a href="/listings/new" class="sn-host">Create listing</a>
+        <% if (!currentUser) { %>
+          <a href="/signup" class="sn-host">SignUp</a>
+          <a href="/login" class="sn-host">Login</a>
+        <% } if (currentUser){%>
+        <a href="/logout" class="sn-host">Logout</a>
+        <% }%>
         <div class="sn-profile">
           <a href="/profile"><i class="fa-solid fa-user"></i></a>
-          
+
         </div>
       </div>
     </div>
