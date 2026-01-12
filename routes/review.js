@@ -5,17 +5,8 @@ const Review = require("../models/review.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const {reviewSchema} = require("../schema.js");
+const {reviewValidation} = require("../middleware.js");
 
-
-const reviewValidation=(req,res,next)=>{
-  let {error}=reviewSchema.validate(req.body);
-  if(error){
-    let allErr=error.details.map((el)=>el.message).join(",") //For Additional Details..
-    throw new ExpressError(400,allErr);
-  }else{
-    next();
-  }
-}
 
 
 //Review route

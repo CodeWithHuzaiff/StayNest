@@ -31,7 +31,11 @@ const listSchema = new mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref:"Review",
     }
-  ]
+  ],
+  author:{
+    type: Schema.Types.ObjectId,
+    ref:"User",
+  }
 });
 
 listSchema.post("findOneAndDelete",async(listing)=>{

@@ -37,13 +37,13 @@
             <a href="/listings/<%= listings[i]._id %>" class="view-btn">
               View Listing
             </a>
-          
+
             <!-- Edit + Delete row -->
             <div class="action-row">
               <form method="get" action="/listings/<%= listings[i]._id %>/edit">
                 <button class="edit-btn">Edit</button>
               </form>
-          
+
               <form
                 method="post"
                 action="/listings/<%= listings[i]._id %>?_method=DELETE"

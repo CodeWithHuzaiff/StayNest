@@ -6,6 +6,7 @@
 
     <div class="card-content">
       <h2><%= attach.title %></h2>
+      <p><b>Author :</b><i><%= attach.author.username %></i></p>
 
       <p><%= attach.description %></p>
 
@@ -16,13 +17,15 @@
       </div>
 
       <div class="actions">
-        <form method="get" action="/listings/<%= attach._id %>/edit">
-          <button class="edit-btn">Edit</button>
-        </form>
-
-        <form method="post" action="/listings/<%= attach._id %>?_method=DELETE">
-          <button class="delete-btn">Delete</button>
-        </form>
+        
+          <form method="get" action="/listings/<%= attach._id %>/edit">
+            <button class="edit-btn">Edit</button>
+          </form>
+  
+          <form method="post" action="/listings/<%= attach._id %>?_method=DELETE">
+            <button class="delete-btn">Delete</button>
+          </form>
+        
 
         <form method="get" action="/listings">
           <button class="back-btn">Back</button>
