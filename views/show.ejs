@@ -34,6 +34,8 @@
     </div>
 
     <div class="review col-8 offset-1">
+      <% if (currentUser) { %>
+       
       <h4>Leave a Review</h4>
       <hr />
       <form
@@ -69,20 +71,23 @@
         <button class="btn btn-outline-dark mb-3">Submit</button>
       </form>
       <hr />
-
+      <% } %>
       <h4>All Ratings</h4>
-
-      <% for(review of attach.reviews){%>
-      <div class="card mb-3" style="width: 25rem">
-        <div class="card-body">
-          <h5 class="card-title"><b>StayNest user</b></h5>
-          <p class="card-text"><%= review.comment %></p>
-          <p class="card-text"><%= review.rating%> star rating</p>
-          <form class="" method="post" action="/listings/<%= attach._id %>/review/<%= review._id %>?_method=DELETE">
-            <button class="btn btn-sm btn-dark">Delete</button>
-          </form>
-        </div>
-      </div>
+        <% if (!attach.reviews || attach.reviews.length === 0) { %>
+          <h3>---No Review Yet---</h3>
+         <% }else{%>
+          <% for(review of attach.reviews){%>
+          <div class="card mb-3" style="width: 25rem">
+            <div class="card-body">
+              <h5 class="card-title">Commented By:<b><%= review.author.username %></b></h5>
+              <p class="card-text"><%= review.comment %></p>
+              <p class="card-text"><%= review.rating%> star rating</p>
+              <form class="" method="post" action="/listings/<%= attach._id %>/review/<%= review._id %>?_method=DELETE">
+                <button class="btn btn-sm btn-dark">Delete</button>
+              </form>
+            </div>
+          </div>
+          <% } %>
       <% } %>
     </div>
   </div>

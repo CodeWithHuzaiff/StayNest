@@ -53,7 +53,12 @@ router.get(
   wrapAsync(async (req, res, next) => {
     const { id } = req.params;
     const attach = await Listing.findById(id)
-      .populate("reviews")
+      .populate({
+        path:"reviews",
+        populate:{
+          path:"author",
+        }
+      })
       .populate("author");
     if (!attach) {
       //attach is an individual listing

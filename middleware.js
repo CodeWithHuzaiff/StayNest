@@ -1,4 +1,5 @@
 const Listing = require("./models/listing");
+const Review = require("./models/review.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema,reviewSchema } = require("./schema.js");
 
@@ -47,3 +48,14 @@ module.exports.reviewValidation = (req, res, next) => {
     next();
   }
 };
+
+module.exports.isReviewAuthor = async (req, res, next) => {
+    const { id,reviewId } = req.params;
+    let review = await Review.findById(reviewId);
+  
+    if (!review.author._id.equals(res.locals.currentUser._id)) {
+      req.flash("error", "You aren't the owner of Review!");
+      return res.redirect(`/listings/${id}`);
+    }
+    next();
+  };
