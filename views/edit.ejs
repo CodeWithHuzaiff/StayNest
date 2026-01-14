@@ -10,6 +10,7 @@
       action="/listings/<%= target._id %>?_method=PUT"
       class="needs-validation"
       novalidate
+      enctype="multipart/form-data"
     >
       <!-- Title -->
       <div class="mb-3">
@@ -37,12 +38,16 @@
         <div class="valid-feedback">Looks good!</div>
       </div>
 
+    <!-- image -->
+      <div class="mb-3">
+        Original Listing Image <br>
+        <img height="300" width="250" src="<%= originalImageUrl %>" alt="">
+      </div>
+
       <input
-        type="text"
+        type="file"
         name="listing[imageUrl]"
-        value="<%= target.image.url %>"
         placeholder="Enter Image URL"
-        required
       />
 
       <!-- Price -->

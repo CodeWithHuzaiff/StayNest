@@ -13,14 +13,17 @@ module.exports.renderNewForm = (req, res) => {
 
 // CREATE
 module.exports.createListing = async (req, res) => {
-  const { title, description, imageUrl, price, location, country } =
+  let url=req.file.path;
+  let filename=req.file.filename;
+  
+  const { title, description, price, location, country } =
     req.body.listing;
   const data = new Listing({
     title,
     description,
     image: {
-      filename: "listingimage",
-      url: imageUrl,
+      filename,
+      url,
     },
     price,
     location,
@@ -61,7 +64,11 @@ module.exports.editListing = async (req, res, next) => {
     req.flash("error", "Listing Not Found");
     return res.redirect("/listings");
   }
-  res.render("edit.ejs", { target });
+
+  let originalImageUrl=target.image.url;
+  originalImageUrl=originalImageUrl.replace("/upload","/upload/h_300,w_250")
+
+  res.render("edit.ejs", { target ,originalImageUrl});
 };
 
 
@@ -85,16 +92,27 @@ module.exports.updateListing = async (req, res) => {
     };
   }
 
-  await Listing.findByIdAndUpdate(id, updateData, {
+  let listing=await Listing.findByIdAndUpdate(id, updateData, {
     runValidators: true,
     new: true,
   });
+
+  if(typeof req.file !== "undefined"){
+    let url=req.file.path;
+    let filename=req.file.filename;
+  
+    listing.image={url,filename};
+  
+    await listing.save()
+  }
+
+
   req.flash("success", "Listing Updated Successfully!!"); //flash msg
   res.redirect(`/listings/${id}`);
 };
 
 //Delete
-module.exports.dalateListing =async (req, res, next) => {
+module.exports.deleteListing =async (req, res, next) => {
     const { id } = req.params;
     let delList = await Listing.findByIdAndDelete(id);
     req.flash("success", "Listing Deleted Successfully!"); //flash msg
