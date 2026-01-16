@@ -1,7 +1,6 @@
 if(process.env.NODE_ENV != "production"){
   require('dotenv').config();
 }
-
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -10,6 +9,7 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 
 const session=require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
@@ -31,17 +31,43 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
-const mongo_url = "mongodb://127.0.0.1:27017/StayNest";
 
-async function main() {
-  await mongoose.connect(mongo_url);
-  console.log("Connected to DB");
+const dbUrl=process.env.ATLASDB_URL
+
+const PORT = 8080;
+
+async function startServer() {
+  try {
+    await mongoose.connect(dbUrl);
+    console.log("MongoDB Atlas connected");
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error("MongoDB connection failed:", err);
+  }
 }
-main().catch(console.error);
+
+startServer();
+
+const store = MongoStore.create({
+  mongoUrl:dbUrl,
+  crypto:{
+    secret:process.env.SECRET,
+  },
+  touchAfter:24*3600,//seconds
+})
+store.on("error",()=>{
+  console.log("Error in mongo store",err);
+  
+})
 
 
 const sessionOptions={
-  secret:"mysecretcode(demo)",
+  store,
+  secret:process.env.SECRET,
   resave:false,
   saveUninitialized:true,//if true prevent empty sessions to save 
   cookie:{
@@ -104,6 +130,3 @@ app.use((err, req, res, next) => {
   res.status(status).render("error.ejs", { message });
 });
 
-app.listen(8080, () => {
-  console.log("Server running on port 8080");
-});

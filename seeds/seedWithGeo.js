@@ -6,7 +6,9 @@ const { data: sampleListings } = require("../init/data.js");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const geocoder = mbxGeocoding({ accessToken: process.env.MAP_TOKEN });
 
-mongoose.connect("mongodb://127.0.0.1:27017/StayNest")
+const dbUrl=process.env.ATLASDB_URL
+
+mongoose.connect(dbUrl)
   .then(() => console.log("Mongo connected"))
   .catch(err => console.log(err));
 

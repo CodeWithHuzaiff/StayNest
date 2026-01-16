@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/standard-satellite",
   center: listing.geometry.coordinates,
-  zoom: 12,
+  zoom: 9,
 });
 
 const marker = new mapboxgl.Marker({ color: "red" })
