@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review");
+const { required } = require("joi");
 
 
 const listSchema = new mongoose.Schema({
@@ -35,6 +36,18 @@ const listSchema = new mongoose.Schema({
   author:{
     type: Schema.Types.ObjectId,
     ref:"User",
+  },
+  //geoJSON
+  geometry:{
+    type:{
+      type:String,
+      enum:['Point'],
+      required:true,
+    },
+    coordinates:{
+      type:[Number],
+      required:true,
+    }
   }
 });
 
