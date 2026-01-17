@@ -1,6 +1,6 @@
 {
-  "engine":{
-    "node":"20.19.6"
+  "engine": {
+    "node": "20.19.6"
   },
   "name": "airbnb-rep",
   "version": "1.0.0",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.16.2",
-    "cloudinary": "^2.9.0",
+    "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^6.0.0",
     "cookie-parser": "^1.4.7",
