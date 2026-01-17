@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Profile = require("../models/profile.js");
 
+
 //contacts route
 router.get("/contacts",wrapAsync(async (req, res) => {
     const user = await Profile.findOne();

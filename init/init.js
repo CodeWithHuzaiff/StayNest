@@ -1,5 +1,8 @@
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
+
 const mongoose = require("mongoose");
-const mongo_url = "mongodb://127.0.0.1:27017/StayNest";
+// const mongo_url =process.env.ATLASDB_URL;
 
 const initData = require("./data.js");
 
@@ -7,30 +10,34 @@ const Listing = require("../models/listing.js");
 const Profile = require("../models/profile.js");
 
 async function main() {
-  await mongoose.connect(mongo_url);
+  await mongoose.connect(process.env.ATLASDB_URL);
 }
 
 const initDB = async () => {
-  await Listing.deleteMany({});
-  initData.data = initData.data.map((obj) => ({
+  const enriched = initData.map((obj) => ({
     ...obj,
-    author: "69610cceaca5c3f8c198e716",
-  })); //remap the obj with author id
-  await Listing.insertMany(initData.data);
+    author: new mongoose.Types.ObjectId("696b06681d119d51ed26d0e6"),
+  }));
 
-  const existingProfile = await Profile.findOne();
-  if (!existingProfile) {
-    await Profile.insertOne(initUser.user);
-  } else {
-    console.log("profile already exists");
-  }
+  await Listing.deleteMany({});
+  await Listing.insertMany(enriched);
+
   console.log("Data was initialised");
 };
+//Eye on it
+// const existingProfile = await Profile.findOne();
+// if (!existingProfile) {
+//   await Profile.create(initUser.user);
+// } else {
+//   console.log("profile already exists");
+// }
+// console.log("Data was initialised");
 
 main()
-  .then(() => {
-    initDB();
-    console.log("conected to DB");
+  .then(async () => {
+    console.log("connected to DB");
+    await initDB();
+    mongoose.connection.close();
   })
   .catch((err) => {
     console.log(err);

@@ -7,13 +7,13 @@
       👤
     </div>
 
-    <h1 class="profile-name"><%=user.name%></h1>
-    <p class="profile-role">Full-Stack Developer</p>
-
+    <p class="name">
+      <%= currentUser ? currentUser.username : "Guest User" %>
+    </p>
     <div class="profile-info">
       <div class="info-row">
         <span>Email</span>
-        <p><%=user.email%></p>
+        <p><%=currentUser.email%></p>
       </div>
 
       <div class="info-row">
@@ -23,7 +23,7 @@
 
       <div class="info-row">
         <span>Location</span>
-        <p><%=user.location%></p>
+        <p><%=user.location  || "--unknown--"%></p>
       </div>
     </div>
 

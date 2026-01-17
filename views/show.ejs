@@ -14,7 +14,7 @@
         <h1 class="lux-title"><%= attach.title %></h1>
 
         <div class="lux-author">
-          Hosted by <strong><%= attach.author.username %></strong>
+          Hosted by <strong><%= attach.author.username  || "unknown"%></strong>
         </div>
 
         <p class="lux-description"><%= attach.description %></p>
