@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
+* {
+  box-sizing: border-box;
+}
 body{
   padding: 0;
   margin: 0;
@@ -195,4 +197,52 @@ body{
 
 .delete-btn:hover {
   background: #dc2626;
+}
+@media (max-width: 480px) {
+
+  .listings-page {
+    padding: 1.5rem 0;
+  }
+
+  .listings-container {
+    padding: 0 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .new-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .listings {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .listing-card img {
+    height: 170px;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .card-content h2 a {
+    font-size: 1rem;
+  }
+
+  .view-btn,
+  .edit-btn,
+  .delete-btn {
+    height: 44px; /* better for touch */
+    font-size: 0.9rem;
+  }
 }

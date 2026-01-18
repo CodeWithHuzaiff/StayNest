@@ -96,3 +96,39 @@ letter-spacing: -0.03em;
     justify-content: center;
     cursor: pointer;
   }
+  @media (max-width: 480px) {
+
+    /* Hide middle search */
+    .sn-nav-center {
+      display: none;
+    }
+  
+    /* Keep Login visible and make it look like a button */
+    .sn-host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 999px;
+      background: #f3f4f6;
+    }
+  
+    /* Navbar spacing */
+    .sn-nav-inner {
+      padding: 0 16px;
+      height: 64px;
+    }
+  
+    /* Logo slightly bigger */
+    .sn-logo {
+      font-size: 1.5rem;
+    }
+  
+    /* Profile slightly bigger */
+    .sn-profile {
+      width: 40px;
+      height: 40px;
+    }
+  }

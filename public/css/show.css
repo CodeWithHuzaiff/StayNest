@@ -227,3 +227,60 @@
     justify-content: space-between;
   }
 }
+@media (max-width: 480px) {
+
+  .lux-show {
+    padding: 1.5rem 1rem;
+  }
+
+  .lux-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .lux-image-wrap img {
+    height: 260px;
+    border-radius: 18px;
+  }
+
+  .lux-title {
+    font-size: 2rem;
+  }
+
+  .lux-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .lux-sticky-bar {
+    position: static; /* remove sticky on mobile */
+    border-radius: 18px;
+    padding: 1rem;
+  }
+
+  .lux-sticky-price {
+    font-size: 1.4rem;
+  }
+
+  .lux-sticky-actions {
+    flex-direction: column;
+  }
+
+  .lux-btn {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .lux-review-shell {
+    padding: 1.2rem;
+  }
+
+  #map {
+    height: 260px;
+    border-radius: 18px;
+  }
+
+  .lux-submit {
+    width: 100%;
+  }
+}
