@@ -3,6 +3,7 @@ const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Profile = require("../models/profile.js");
+const { isLoggedIn } = require("../middleware.js");
 
 
 //contacts route
@@ -12,17 +13,14 @@ router.get("/contacts",wrapAsync(async (req, res) => {
   }));
   
   //profile route
-  router.get("/", wrapAsync(async (req, res, next) => {
+  router.get("/", isLoggedIn, wrapAsync(async (req, res, next) => {
       const user = await Profile.findOne();
-      if (!user) {
-        return next(new ExpressError(404,"User not found"));
-      }
       res.render("profile.ejs", { user });
   
   }));
   
   //Edit profile route
-  router.get("/edit/:id",wrapAsync( async (req, res) => {
+  router.get("/edit/:id", isLoggedIn, wrapAsync( async (req, res) => {
     const { id } = req.params;
     user = await Profile.findById(id);
     res.render("profileEdit.ejs", { user });

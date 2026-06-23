@@ -1,48 +1,48 @@
 <% layout('layouts/boilerplate') %>
-<div class="row mt-3">
-    <h1 class="col-6 offset-3">SignUp on StayNest</h1>
-    <div class="col-6 offset-3">
-        <form method="post" action="/signup" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="username">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="username"
-                  class="form-control"
-                  required
-                />
-                <div class="invalid-feedback">Username required</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-            <div class="mb-3">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  class="form-control"
-                  required
-                />
-                <div class="invalid-feedback">Email required</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-            <div class="mb-3">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  class="form-control"
-                  required
-                />
-                <div class="invalid-feedback">Password required</div>
-                <div class="valid-feedback">Looks good!</div>
-              </div>
-              <button class="btn btn-success">Sign Up</button>
-        </form>
-    </div>
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">SignUp on StayNest</h1>
+    <form method="post" action="/signup" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="username"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Username required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Email required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Password required</div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <button class="btn btn-success auth-btn">Sign Up</button>
+    </form>
+  </div>
 </div>
